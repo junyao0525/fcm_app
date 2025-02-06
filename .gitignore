@@ -1,0 +1,32 @@
+# Ignore all .exe files in any directory
+**/*.exe
+
+# Ignore VSCode directory
+.vscode/
+
+# Additional C++ related ignores
+*.o
+*.obj
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# Compiled binaries
+bin/
+build/
+
+# Compiler generated files
+*.log
+*.pdb
+*.ilk
+*.idb
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Prerequisites
+*.d
