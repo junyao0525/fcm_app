@@ -247,7 +247,7 @@ void calculateExportedBill(double imported_units, double solar_units, double tot
     }
 }
 
-void carbonFootprintWithSolar()
+void carbonFootprint()
 {
     const double CO2_PER_KWH = 0.4;    // kg CO2 per kWh
     const double SOLAR_SAVINGS = 0.85; // kWh savings potential
@@ -352,7 +352,7 @@ int main()
             break;
         }
         case 2:
-            carbonFootprintWithSolar();
+            carbonFootprint();
             break;
         case 3:
             smartLivingGuide();
