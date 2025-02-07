@@ -91,20 +91,17 @@ double calculateImportedBill(double imported_units, double *countedUnits)
     double st_total = 0, non_st_total = 0, KWTHBB = 0, grant_total = 0, total = 0, tax = 0;
     // Tariff calculation for the first 200 kWh
     // Phase 1
-    cout << "imported_units: " << imported_units << endl;
     if (imported_units > 200)
     {
         non_st_total += 200 * 0.218;
         countedUnits[0] = 200;
         imported_units -= 200;
-        cout << "non_st_total: " << non_st_total << endl;
     }
     else
     {
         non_st_total += imported_units * 0.218;
         countedUnits[0] = imported_units;
         imported_units = 0;
-        cout << "non_st_total: " << non_st_total << endl;
     }
     // Tariff calculation for the next 100 kWh (201-300)
     // Phase 2
@@ -113,14 +110,12 @@ double calculateImportedBill(double imported_units, double *countedUnits)
         non_st_total += 100 * 0.334;
         countedUnits[1] = 100;
         imported_units -= 100;
-        cout << "non_st_total: " << non_st_total << endl;
     }
     else if (imported_units > 0)
     {
         non_st_total += imported_units * 0.334;
         countedUnits[1] = imported_units;
         imported_units = 0;
-        cout << "non_st_total: " << non_st_total << endl;
     }
 
     // Tariff calculation for the next 300 kWh (301-600)
@@ -130,14 +125,12 @@ double calculateImportedBill(double imported_units, double *countedUnits)
         non_st_total += 300 * 0.516;
         countedUnits[2] = 300;
         imported_units -= 300;
-        cout << "non_st_total: " << non_st_total << endl;
     }
     else if (imported_units > 0)
     {
         non_st_total += imported_units * 0.516;
         countedUnits[2] = imported_units;
         imported_units = 0;
-        cout << "non_st_total: " << non_st_total << endl;
     }
 
     // Tariff calculation for the next 300 kWh (601-900)
@@ -147,14 +140,12 @@ double calculateImportedBill(double imported_units, double *countedUnits)
         st_total += 300 * 0.546;
         countedUnits[3] = 300;
         imported_units -= 300;
-        cout << "st_total: " << non_st_total << endl;
     }
     else if (imported_units > 0)
     {
         st_total += imported_units * 0.546;
         countedUnits[3] = imported_units;
         imported_units = 0;
-        cout << "st_total: " << non_st_total << endl;
     }
 
     // Tariff calculation for units over 900 kWh
@@ -163,7 +154,6 @@ double calculateImportedBill(double imported_units, double *countedUnits)
     {
         st_total += imported_units * 0.571;
         countedUnits[4] = imported_units;
-        cout << "st_total: " << non_st_total << endl;
     }
 
     // Add service tax (6%) and KWTHBB charge (1.6%)
@@ -200,7 +190,6 @@ void calculateExportedBill(double imported_units, double solar_units, double tot
     int stopIndex = 0;
     for (int i = 0; i < 5; i++)
     {
-        cout << "before countedUnits[" << i << "]: " << countedUnits[i] << endl;
         if (countedUnits[i] == 0)
         {
             stopIndex = i - 1;
@@ -220,12 +209,10 @@ void calculateExportedBill(double imported_units, double solar_units, double tot
                 temp = abs(countedUnits[i] - solar_units);
                 solar_units -= countedUnits[i];
                 countedUnits[i] = temp;
-                cout << "temp: " << temp << endl;
                 if (solar_units == abs(temp))
                 {
                     countedUnits[i] = 0;
                 }
-                cout << "solar_units: " << solar_units << endl;
                 if (solar_units < 0)
                 {
                     break;
